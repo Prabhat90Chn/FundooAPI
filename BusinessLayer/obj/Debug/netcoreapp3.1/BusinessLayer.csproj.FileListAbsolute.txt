@@ -1,0 +1,15 @@
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.AssemblyReference.cache
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.AssemblyInfoInputs.cache
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.AssemblyInfo.cs
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\EFCoreProjects\FundooAPI\BusinessLayer\bin\Debug\netcoreapp3.1\BusinessLayer.deps.json
+D:\EFCoreProjects\FundooAPI\BusinessLayer\bin\Debug\netcoreapp3.1\BusinessLayer.dll
+D:\EFCoreProjects\FundooAPI\BusinessLayer\bin\Debug\netcoreapp3.1\BusinessLayer.pdb
+D:\EFCoreProjects\FundooAPI\BusinessLayer\bin\Debug\netcoreapp3.1\ModelLayer.dll
+D:\EFCoreProjects\FundooAPI\BusinessLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.dll
+D:\EFCoreProjects\FundooAPI\BusinessLayer\bin\Debug\netcoreapp3.1\ModelLayer.pdb
+D:\EFCoreProjects\FundooAPI\BusinessLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.pdb
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\Business.EA331CBA.Up2Date
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.dll
+D:\EFCoreProjects\FundooAPI\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.pdb

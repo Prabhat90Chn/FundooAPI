@@ -1,0 +1,10 @@
+D:\EFCoreProjects\FundooAPI\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.csproj.AssemblyReference.cache
+D:\EFCoreProjects\FundooAPI\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\EFCoreProjects\FundooAPI\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.AssemblyInfoInputs.cache
+D:\EFCoreProjects\FundooAPI\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.AssemblyInfo.cs
+D:\EFCoreProjects\FundooAPI\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.csproj.CoreCompileInputs.cache
+D:\EFCoreProjects\FundooAPI\ModelLayer\bin\Debug\netcoreapp3.1\ModelLayer.deps.json
+D:\EFCoreProjects\FundooAPI\ModelLayer\bin\Debug\netcoreapp3.1\ModelLayer.dll
+D:\EFCoreProjects\FundooAPI\ModelLayer\bin\Debug\netcoreapp3.1\ModelLayer.pdb
+D:\EFCoreProjects\FundooAPI\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.dll
+D:\EFCoreProjects\FundooAPI\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.pdb

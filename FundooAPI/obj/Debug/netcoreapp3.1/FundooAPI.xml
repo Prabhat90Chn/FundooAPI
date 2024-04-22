@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FundooAPI</name>
+    </assembly>
+    <members>
+        <member name="T:FundooAPI.Controllers.FundooApiController">
+            <summary>
+            This class is used as API Controller
+            </summary>
+        </member>
+        <member name="M:FundooAPI.Controllers.FundooApiController.Registration(ModelLayer.Model.EntityModel)">
+            <summary>
+            This API is used to Register User
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.FundooApiController.Login(ModelLayer.Model.LoginModel)">
+            <summary>
+            This API is used for User Login
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.FundooApiController.ForgotPassword(ModelLayer.Model.ForgetPasswordModel)">
+            <summary>
+            his API is used to get Forget Password
+            </summary>
+            <param name="passwordModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.FundooApiController.ResetPassword(System.String,ModelLayer.Model.ResetPasswordModel)">
+            <summary>
+            This API is used to Reset Password
+            </summary>
+            <param name="token"></param>
+            <param name="resetModel"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
