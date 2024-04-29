@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ModelLayer.Model
 {
 
-    public class EntityModel
+    public class RegistrationModel
     {
         private const string FirstNameRegex = @"^[a-zA-Z]{2,}$";
         private const string LastNameRegex = @"^[a-zA-Z]{2,}$";

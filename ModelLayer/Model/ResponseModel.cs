@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ModelLayer.Model
 {
-    public  class ResponseModel<T>
+    public class ResponseModel<T>
     {
         public bool Success { get; set; } = true;
         public string Message { get; set; } = "";

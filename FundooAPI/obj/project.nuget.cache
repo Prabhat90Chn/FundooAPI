@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "piu1hQ7fqVG7EGoRZgMqVaVmmyrX02WxplVqeYtPgzaiswbsE1LrsmPEjtTRN3NQTzp8mlI+KSnRPxvRqs882w==",
+  "dgSpecHash": "1e1G9lBW+QjgQNcocGfj3aPf0YHXWXgRzBTyUIxEsfSTV3GW0pksQ/yAOifJOApez7YebAR1olu7zI/DCeCrww==",
   "success": true,
   "projectFilePath": "D:\\EFCoreProjects\\FundooAPI\\FundooAPI\\FundooAPI.csproj",
   "expectedPackageFiles": [
@@ -41,6 +41,9 @@
     "C:\\Users\\Admin\\.nuget\\packages\\mimekit\\3.2.0\\mimekit.3.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\netcore.mailkit\\2.1.0\\netcore.mailkit.2.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\nlog\\5.2.8\\nlog.5.2.8.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\nlog.extensions.logging\\5.3.8\\nlog.extensions.logging.5.3.8.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.8\\nlog.web.aspnetcore.5.3.8.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

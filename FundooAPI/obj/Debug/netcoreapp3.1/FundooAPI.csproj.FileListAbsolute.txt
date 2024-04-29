@@ -1,9 +1,4 @@
-D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.csproj.AssemblyReference.cache
-D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.GeneratedMSBuildEditorConfig.editorconfig
-D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.AssemblyInfoInputs.cache
-D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.AssemblyInfo.cs
-D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.csproj.CoreCompileInputs.cache
-D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NLog.config
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\appsettings.json
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\FundooAPI.exe
@@ -44,6 +39,9 @@ D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\MimeKit.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NLog.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -69,6 +67,14 @@ D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\RepositoryLayer.dl
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\BusinessLayer.pdb
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\ModelLayer.pdb
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\RepositoryLayer.pdb
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.csproj.AssemblyReference.cache
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.AssemblyInfoInputs.cache
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.AssemblyInfo.cs
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.csproj.CoreCompileInputs.cache
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.sourcelink.json
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.RazorTargetAssemblyInfo.cache
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\staticwebassets\FundooAPI.StaticWebAssets.Manifest.cache
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\staticwebassets\FundooAPI.StaticWebAssets.Pack.cache

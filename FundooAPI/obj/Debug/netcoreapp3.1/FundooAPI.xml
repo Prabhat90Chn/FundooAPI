@@ -6,10 +6,10 @@
     <members>
         <member name="T:FundooAPI.Controllers.FundooApiController">
             <summary>
-            This class is used as API Controller
+            This class is used as Login API Controller
             </summary>
         </member>
-        <member name="M:FundooAPI.Controllers.FundooApiController.Registration(ModelLayer.Model.EntityModel)">
+        <member name="M:FundooAPI.Controllers.FundooApiController.Registration(ModelLayer.Model.RegistrationModel)">
             <summary>
             This API is used to Register User
             </summary>
@@ -25,7 +25,7 @@
         </member>
         <member name="M:FundooAPI.Controllers.FundooApiController.ForgotPassword(ModelLayer.Model.ForgetPasswordModel)">
             <summary>
-            his API is used to get Forget Password
+            This API is used to get Forget Password
             </summary>
             <param name="passwordModel"></param>
             <returns></returns>
@@ -36,6 +36,54 @@
             </summary>
             <param name="token"></param>
             <param name="resetModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.NotesController.CreateNote(ModelLayer.Model.NotesModel)">
+            <summary>
+            This Api is used to create notes for the user
+            </summary>
+            <param name="notesModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.NotesController.ViewNotes">
+            <summary>
+            This Api is used to fetch all the notes for the user 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.NotesController.ViewNoteByID(ModelLayer.Model.NotesIdModel)">
+            <summary>
+            This Api is used to fetch note using note id
+            </summary>
+            <param name="noteIdmodel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.NotesController.EditNote(ModelLayer.Model.EditNotesModel)">
+            <summary>
+            This Api is used to edit note
+            </summary>
+            <param name="editModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.NotesController.DeleteNote(ModelLayer.Model.NotesIdModel)">
+            <summary>
+            This Api is used to delete note for the given user id
+            </summary>
+            <param name="noteIdModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.NotesController.ArchUnarchived(ModelLayer.Model.NotesIdModel)">
+            <summary>
+            This Api is used to Archive and Unarchive the note
+            </summary>
+            <param name="noteIdModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FundooAPI.Controllers.NotesController.TrashUnTrash(ModelLayer.Model.NotesIdModel)">
+            <summary>
+            This Api is used to move note to trash and vice-versa.
+            </summary>
+            <param name="noteIdModel"></param>
             <returns></returns>
         </member>
     </members>

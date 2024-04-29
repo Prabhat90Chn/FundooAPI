@@ -3,9 +3,6 @@ using BusinessLayer.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,18 +10,16 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using ModelLayer.Model;
+using NLog.Extensions.Logging;
 using RepositoryLayer.Context;
 using RepositoryLayer.Hashing;
 using RepositoryLayer.Interface;
+using RepositoryLayer.JwtToken;
 using RepositoryLayer.Service;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FundooAPI
 {
@@ -39,32 +34,30 @@ namespace FundooAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Service registrations
             ConfigureDependencyInjection(services);
 
-            // Configure JWT authentication
             ConfigureJwtAuthentication(services);
 
-            // Add controllers
             services.AddControllers();
 
-            // Add Swagger documentation
             AddSwaggerDocumentation(services);
+
+            AddNlogConfiguration(services);
         }
 
-        // Service registrations
         private void ConfigureDependencyInjection(IServiceCollection services)
         {
             services.AddScoped<IUserBL, UserBL>();
             services.AddScoped<IUserRL, UserRL>();
             services.AddScoped<IEmailSender, EmailService>();
+            services.AddScoped<INotesBL, NotesBL>();
+            services.AddScoped<INotesRL, NotesRL>();
             services.AddScoped<Password_Hash>();
-
+            services.AddScoped<JwtToken>();
+            
             services.AddDbContext<FundooApiContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
         }
 
-
-        // Configure JWT authentication
         private void ConfigureJwtAuthentication(IServiceCollection services)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -133,14 +126,20 @@ namespace FundooAPI
             });
         }
 
+        private void AddNlogConfiguration(IServiceCollection services)
+        {
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder.SetMinimumLevel(LogLevel.Information);
+                loggingBuilder.AddNLog("NLog.config"); 
+            });
+        }
 
-        // Add Swagger documentation
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Enable middleware for serving generated Swagger as a JSON endpoint
             app.UseSwagger();
 
-            // Enable middleware for serving Swagger UI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fundoo API V1");

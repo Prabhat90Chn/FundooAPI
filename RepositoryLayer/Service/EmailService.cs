@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using ModelLayer.Model;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using RepositoryLayer.Interface;
-using Microsoft.Extensions.Options;
-using System.Diagnostics.Contracts;
-using System.ComponentModel;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace RepositoryLayer.Service
 {
-    public class EmailService:IEmailSender
+    public class EmailService : IEmailSender
     {
         private readonly SmtpClient _smtpClient;
         private readonly string _senderEmail;

@@ -1,8 +1,3 @@
-D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.csproj.AssemblyReference.cache
-D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.GeneratedMSBuildEditorConfig.editorconfig
-D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.AssemblyInfoInputs.cache
-D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.AssemblyInfo.cs
-D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.csproj.CoreCompileInputs.cache
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.deps.json
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.runtimeconfig.json
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.runtimeconfig.dev.json
@@ -10,6 +5,12 @@ D:\EFCoreProjects\FundooAPI\RepositoryLayer\bin\Debug\netcoreapp3.1\RepositoryLa
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.pdb
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\bin\Debug\netcoreapp3.1\ModelLayer.dll
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\bin\Debug\netcoreapp3.1\ModelLayer.pdb
+D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.csproj.AssemblyReference.cache
+D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.AssemblyInfoInputs.cache
+D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.AssemblyInfo.cs
+D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.csproj.CoreCompileInputs.cache
+D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.sourcelink.json
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\Reposito.A0A61804.Up2Date
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.dll
 D:\EFCoreProjects\FundooAPI\RepositoryLayer\obj\Debug\netcoreapp3.1\RepositoryLayer.pdb

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ModelLayer.Model
 {
@@ -15,11 +12,11 @@ namespace ModelLayer.Model
         private const string PasswordRequiredErrorMessage = "Password Field is Empty";
         private const string PasswordInvalidErrorMessage = "Password must be at least 8 characters long and contain at least one letter, one number, and one special character.";
 
-        [Required(ErrorMessage = EmailRequiredErrorMessage)]
+        //[Required(ErrorMessage = EmailRequiredErrorMessage)]
         [RegularExpression(EmailRegexPattern, ErrorMessage = EmailInvalidErrorMessage)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = PasswordRequiredErrorMessage)]
+       // [Required(ErrorMessage = PasswordRequiredErrorMessage)]
         [RegularExpression(PasswordRegexPattern, ErrorMessage = PasswordInvalidErrorMessage)]
         public string Password { get; set; }
     }
