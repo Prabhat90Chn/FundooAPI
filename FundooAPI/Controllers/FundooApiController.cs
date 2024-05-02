@@ -63,8 +63,7 @@ namespace FundooAPI.Controllers
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("login")]
+        [HttpPost("login")]
         public IActionResult Login(LoginModel loginModel)
         {
             try
@@ -96,8 +95,7 @@ namespace FundooAPI.Controllers
         /// </summary>
         /// <param name="passwordModel"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("forgotpassword")]
+        [HttpPost("forgotpassword")]
         public async Task<IActionResult> ForgotPassword(ForgetPasswordModel passwordModel)
         {
             try
@@ -128,7 +126,6 @@ namespace FundooAPI.Controllers
         /// <param name="resetModel"></param>
         /// <returns></returns>
         [HttpPatch]
-       // [Route("resetpassword")]
         public IActionResult ResetPassword([FromQuery] string token, ResetPasswordModel resetModel)
         {
             try

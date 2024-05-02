@@ -2,12 +2,14 @@
 using BusinessLayer.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace FundooAPI.Controllers
 {
@@ -18,11 +20,13 @@ namespace FundooAPI.Controllers
     {
         private INotesBL _notesBL;
         private readonly ILogger<NotesController> _logger;
+        private readonly IDistributedCache _cache;
 
-        public NotesController(INotesBL notesBL, ILogger<NotesController> logger)
+        public NotesController(INotesBL notesBL, ILogger<NotesController> logger, IDistributedCache cache)
         {
             _notesBL = notesBL;
             _logger = logger;
+            _cache = cache;
         }
 
         /// <summary>
@@ -39,6 +43,20 @@ namespace FundooAPI.Controllers
                 int userId = GetUserIdFromClaims();
                 var result = _notesBL.AddNote(notesModel, userId);
                 var response = new ResponseModel<NotesModel>();
+
+                var cacheResult = _cache.GetString(userId.ToString());
+                Dictionary<int, UserNotes> userNotesDict;
+                if (cacheResult == null)
+                {
+                    userNotesDict = new Dictionary<int, UserNotes>();
+                }
+                else
+                {
+                    userNotesDict = JsonSerializer.Deserialize<Dictionary<int, UserNotes>>(cacheResult);
+                }
+                userNotesDict.Add(result.NoteId, result);
+                _cache.SetString(userId.ToString(), JsonSerializer.Serialize(userNotesDict));
+
                 if (result != null)
                 {
                     response.Success = true;
@@ -70,6 +88,7 @@ namespace FundooAPI.Controllers
                 var response = new ResponseModel<List<UserNotes>>();
                 int userId = GetUserIdFromClaims();
                 var Result = _notesBL.ViewNotes(userId);
+                
                 if (Result != null)
                 {
                     response.Success = true;

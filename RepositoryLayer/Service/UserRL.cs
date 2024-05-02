@@ -33,7 +33,7 @@ namespace RepositoryLayer.Service
             {
                 var existingUser = _dbContext.User.FirstOrDefault<UserEntity>(e => e.Email == userRegistrationDto.Email);
                
-                if (existingUser != null)
+                if (existingUser == null)
                 {
                     var newUser= new UserEntity
                     {
@@ -63,7 +63,7 @@ namespace RepositoryLayer.Service
             {
                 var validUser = _dbContext.User.FirstOrDefault(e => e.Email == userLoginDto.Email);
                 
-                if (validUser == null || !_passwordHash.VerifyPassword(userLoginDto.Password, validUser.Password))
+                if (validUser != null && _passwordHash.VerifyPassword(userLoginDto.Password, validUser.Password))
                 {
                     var token = new JwtToken.JwtToken(_config);
                     return token.GenerateToken(validUser);

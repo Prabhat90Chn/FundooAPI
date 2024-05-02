@@ -87,3 +87,8 @@ D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.xml
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.pdb
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.genruntimeconfig.cache
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Pipelines.Sockets.Unofficial.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\StackExchange.Redis.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll

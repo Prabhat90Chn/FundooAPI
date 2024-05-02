@@ -20,6 +20,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 namespace FundooAPI
 {
@@ -43,6 +44,8 @@ namespace FundooAPI
             AddSwaggerDocumentation(services);
 
             AddNlogConfiguration(services);
+
+            AddRedisConfiguration(services);
         }
 
         private void ConfigureDependencyInjection(IServiceCollection services)
@@ -133,6 +136,15 @@ namespace FundooAPI
                 loggingBuilder.ClearProviders();
                 loggingBuilder.SetMinimumLevel(LogLevel.Information);
                 loggingBuilder.AddNLog("NLog.config"); 
+            });
+        }
+
+        private void AddRedisConfiguration(IServiceCollection services)
+        {
+            string redisConnectionString = Configuration.GetConnectionString("Redis");
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = redisConnectionString;
             });
         }
 
