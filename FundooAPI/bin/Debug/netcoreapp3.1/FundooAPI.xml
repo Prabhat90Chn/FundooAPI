@@ -38,7 +38,7 @@
             <param name="resetModel"></param>
             <returns></returns>
         </member>
-        <member name="M:FundooAPI.Controllers.NotesController.CreateNote(ModelLayer.Model.NotesModel)">
+        <member name="M:FundooAPI.Controllers.NotesController.CreateNote(ModelLayer.Model.NoteCreationModel)">
             <summary>
             This Api is used to create notes for the user
             </summary>

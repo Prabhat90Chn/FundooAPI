@@ -9,9 +9,9 @@ using RepositoryLayer.Entity;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace FundooAPI.Controllers
+namespace UserApi.Controllers
 {
 
     [ApiController]
@@ -20,13 +20,11 @@ namespace FundooAPI.Controllers
     {
         private INotesBL _notesBL;
         private readonly ILogger<NotesController> _logger;
-        private readonly IDistributedCache _cache;
 
         public NotesController(INotesBL notesBL, ILogger<NotesController> logger, IDistributedCache cache)
         {
             _notesBL = notesBL;
             _logger = logger;
-            _cache = cache;
         }
 
         /// <summary>
@@ -36,32 +34,19 @@ namespace FundooAPI.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        public IActionResult CreateNote(NotesModel notesModel)
+        public async Task<IActionResult> CreateNote(NoteCreationModel notesModel)
         {
             try
             {
                 int userId = GetUserIdFromClaims();
-                var result = _notesBL.AddNote(notesModel, userId);
-                var response = new ResponseModel<NotesModel>();
-
-                var cacheResult = _cache.GetString(userId.ToString());
-                Dictionary<int, UserNotes> userNotesDict;
-                if (cacheResult == null)
-                {
-                    userNotesDict = new Dictionary<int, UserNotes>();
-                }
-                else
-                {
-                    userNotesDict = JsonSerializer.Deserialize<Dictionary<int, UserNotes>>(cacheResult);
-                }
-                userNotesDict.Add(result.NoteId, result);
-                _cache.SetString(userId.ToString(), JsonSerializer.Serialize(userNotesDict));
-
-                if (result != null)
+                var note =await _notesBL.AddNote(notesModel, userId);
+                
+                var response = new ResponseModel<UserNote>();
+                if (note != null)
                 {
                     response.Success = true;
                     response.Message = "Note created succesfully";
-                    response.Data = notesModel;
+                    response.Data = note;
                     return Created(string.Empty, response);
                 }
                     response.Success = false;
@@ -70,6 +55,11 @@ namespace FundooAPI.Controllers
             }
             catch (BusinessLayerException ex)
             {
+                if(ex.InnerException != null)
+                {
+                    _logger.LogError(ex.InnerException, ex.InnerException.Message);
+                    return StatusCode(500, ex.InnerException.Message);
+                }
                 _logger.LogError(ex, ex.Message);
                 return StatusCode(500, ex.Message);
             }
@@ -85,15 +75,15 @@ namespace FundooAPI.Controllers
         {
             try
             {
-                var response = new ResponseModel<List<UserNotes>>();
+                var response = new ResponseModel<List<UserNote>>();
                 int userId = GetUserIdFromClaims();
-                var Result = _notesBL.ViewNotes(userId);
+                var listOfNotes = _notesBL.ViewNotes(userId);
                 
-                if (Result != null)
+                if (listOfNotes != null)
                 {
                     response.Success = true;
-                    response.Message = "Note Retrieved successfully";
-                    response.Data = Result;
+                    response.Message = "Notes Retrieved successfully";
+                    response.Data = listOfNotes.Result;
                     return Ok(response);
                 }
                     response.Success = false;
@@ -119,7 +109,7 @@ namespace FundooAPI.Controllers
         {
             try
             {
-                var response = new ResponseModel<UserNotes>();
+                var response = new ResponseModel<UserNote>();
                 int userId = GetUserIdFromClaims();
                 var result = _notesBL.ViewNotebyId(userId, noteIdModel);
                 if (result != null)
@@ -151,7 +141,7 @@ namespace FundooAPI.Controllers
         {
             try
             {
-                var response = new ResponseModel<UserNotes>();
+                var response = new ResponseModel<UserNote>();
                 int userId = GetUserIdFromClaims();
                 var result = _notesBL.EditNote(editNotesModel, userId);
                 if (result != null)
@@ -277,8 +267,3 @@ namespace FundooAPI.Controllers
         }
     }
 }
-
-
-
-
-

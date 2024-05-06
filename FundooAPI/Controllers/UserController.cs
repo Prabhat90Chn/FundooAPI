@@ -6,19 +6,19 @@ using ModelLayer.Model;
 using System;
 using System.Threading.Tasks;
 
-namespace FundooAPI.Controllers
+namespace UserApi.Controllers
 {
     /// <summary>
     /// This class is used as Login API Controller
     /// </summary>
     [ApiController]
     [Route("api/users")]
-    public class FundooApiController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserBL _userBL;
-        private readonly ILogger<FundooApiController> _logger;
+        private readonly ILogger<UserController> _logger;
 
-        public FundooApiController(IUserBL userBL, ILogger<FundooApiController> logger)
+        public UserController(IUserBL userBL, ILogger<UserController> logger)
         {
             _userBL = userBL;
             _logger = logger;

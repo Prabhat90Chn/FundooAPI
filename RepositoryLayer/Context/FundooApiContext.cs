@@ -7,6 +7,6 @@ namespace RepositoryLayer.Context
     {
         public FundooApiContext(DbContextOptions options) : base(options) { }
         public virtual DbSet<UserEntity> User { get; set; }
-        public DbSet<UserNotes> Notes { get; set; }
+        public DbSet<UserNote> Notes { get; set; }
     }
 }

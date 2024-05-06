@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace RepositoryLayer.Entity
 {
-    public class UserNotes
+    public class UserNote
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

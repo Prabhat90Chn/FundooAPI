@@ -22,7 +22,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 
-namespace FundooAPI
+namespace UserApi
 {
     public class Startup
     {

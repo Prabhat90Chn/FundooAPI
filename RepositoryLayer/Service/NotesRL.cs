@@ -1,4 +1,5 @@
-﻿using ModelLayer.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using ModelLayer.Model;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
@@ -6,6 +7,7 @@ using RepositoryLayer.RLException;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RepositoryLayer.Service
 {
@@ -18,20 +20,24 @@ namespace RepositoryLayer.Service
             _dbContext = context;
         }
 
-        public UserNotes AddNote(NotesModel notesModel, int userId)
+        public async Task<UserNote> AddNote(NoteCreationModel notesModel, int userId)
         {
+            var note = new UserNote
+            {
+                UserId = userId,
+                Title = notesModel.Title,
+                Description = notesModel.Description,
+                Colour = notesModel.Colour
+            };
             try
             {
-                var note = new UserNotes
-                {
-                    UserId = userId,
-                    Title = notesModel.Title,
-                    Description = notesModel.Description,
-                    Colour = notesModel.Colour
-                };
-                _dbContext.Notes.Add(note);
-                _dbContext.SaveChanges();
-                return note;
+               var i = _dbContext.Notes.Add(note);
+                await _dbContext.SaveChangesAsync();
+                return i.Entity;
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new RepositoryLayerException("Failed to add note to the database.", ex);
             }
             catch (Exception ex)
             {
@@ -39,7 +45,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public List<UserNotes> ViewNotes(int userId)
+        public List<UserNote> ViewNotes(int userId)
         {
             try
             {
@@ -51,7 +57,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public UserNotes ViewNotebyId(int userId, int noteId)
+        public UserNote ViewNotebyId(int userId, int noteId)
         {
             try
             {
@@ -63,7 +69,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public UserNotes EditNote(EditNotesModel editModel, int userId)
+        public UserNote EditNote(EditNotesModel editModel, int userId)
         {
             try
             {
@@ -87,7 +93,7 @@ namespace RepositoryLayer.Service
         {
             try
             {
-                UserNotes note = _dbContext.Notes.FirstOrDefault(e => e.UserId == userId && e.NoteId == noteId);
+                UserNote note = _dbContext.Notes.FirstOrDefault(e => e.UserId == userId && e.NoteId == noteId);
                 if (note != null)
                 {
                     _dbContext.Notes.Remove(note);

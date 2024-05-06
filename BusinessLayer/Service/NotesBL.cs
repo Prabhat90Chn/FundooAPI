@@ -1,27 +1,37 @@
 ﻿using BusinessLayer.BLException;
 using BusinessLayer.Interface;
+using Microsoft.Extensions.Caching.Distributed;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 using RepositoryLayer.RLException;
+using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
     public class NotesBL : INotesBL
     {
         private readonly INotesRL _notesRL;
+        private readonly IDistributedCache _cache;
+        private List<UserNote> noteList;
 
-        public NotesBL(INotesRL notesRL)
+        public NotesBL(INotesRL notesRL, IDistributedCache cache)
         {
             _notesRL = notesRL;
+            _cache = cache;
         }
 
-        public UserNotes AddNote(NotesModel notesModel, int userId)
+        public async Task<UserNote> AddNote(NoteCreationModel notesModel, int userId)
         {
             try
             {
-                return _notesRL.AddNote(notesModel, userId);
+                var dbnote = await _notesRL.AddNote(notesModel, userId);
+                await CacheUserNoteAsync(dbnote, _cache);
+                
+                return dbnote;
             }
             catch (RepositoryLayerException ex)
             {
@@ -29,11 +39,23 @@ namespace BusinessLayer.Service
             }
         }
 
-        public List<UserNotes> ViewNotes(int userId)
+        public async Task<List<UserNote>> ViewNotes(int userId)
         {
             try
             {
-                return _notesRL.ViewNotes(userId);
+                var uId = getUserIdForCache(userId);
+                var cachedNotesJson = await _cache.GetStringAsync(uId);
+                if (cachedNotesJson != null)
+                {
+                    return JsonSerializer.Deserialize<List<UserNote>>(cachedNotesJson);
+                }
+                else
+                {
+                    var notes = _notesRL.ViewNotes(userId);
+                    await _cache.SetStringAsync(uId, JsonSerializer.Serialize(notes));
+                    return notes;
+                }
+                
             }
             catch (RepositoryLayerException ex)
             {
@@ -41,7 +63,7 @@ namespace BusinessLayer.Service
             }
         }
 
-        public UserNotes ViewNotebyId(int userId, NotesIdModel noteIdmodel)
+        public UserNote ViewNotebyId(int userId, NotesIdModel noteIdmodel)
         {
             try
             {
@@ -54,7 +76,7 @@ namespace BusinessLayer.Service
             }
         }
 
-        public UserNotes EditNote(EditNotesModel notesModel, int userId)
+        public UserNote EditNote(EditNotesModel notesModel, int userId)
         {
             try
             {
@@ -114,7 +136,45 @@ namespace BusinessLayer.Service
             return 0;
         }
 
-     
+        private async Task CacheUserNoteAsync(UserNote dbnote, IDistributedCache cache)
+        {
+            try
+            {
+                await _cache.SetStringAsync(Convert.ToString(dbnote.NoteId), JsonSerializer.Serialize(dbnote));
+                
+                var userid = getUserIdForCache(dbnote.UserId);
+                var userIdCacheNote = await cache.GetStringAsync(userid);
+
+                if (userIdCacheNote == null)
+                {
+                    noteList = new List<UserNote> { dbnote };
+                    await _cache.SetStringAsync(Convert.ToString(userid), JsonSerializer.Serialize(noteList));
+                }
+                else
+                {
+                    List<UserNote> noteListDeserialize = JsonSerializer.Deserialize<List<UserNote>>(userIdCacheNote);
+                    if (noteListDeserialize != null)
+                    {
+                        noteListDeserialize.Add(dbnote);
+                        await _cache.SetStringAsync(Convert.ToString(userid), JsonSerializer.Serialize(noteListDeserialize));
+                    }
+                    else
+                    {
+                        throw new BusinessLayerException("Unable to deserialize list of notes");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLayerException(ex.Message, ex);
+            }
+        }
+
+        private string getUserIdForCache(int userId)
+        {
+            return $"User_{userId}";
+        }
     }
 }
 

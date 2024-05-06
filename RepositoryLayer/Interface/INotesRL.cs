@@ -1,17 +1,18 @@
 ﻿using ModelLayer.Model;
 using RepositoryLayer.Entity;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RepositoryLayer.Interface
 {
     public interface INotesRL
     {
-        public UserNotes AddNote(NotesModel notesModel, int userId);
-        public List<UserNotes> ViewNotes(int userId);
+        public Task<UserNote> AddNote(NoteCreationModel notesModel, int userId);
+        public List<UserNote> ViewNotes(int userId);
 
-        public UserNotes ViewNotebyId(int userId, int noteId);
+        public UserNote ViewNotebyId(int userId, int noteId);
 
-        public UserNotes EditNote(EditNotesModel editModel, int userId);
+        public UserNote EditNote(EditNotesModel editModel, int userId);
 
         public bool DeleteNote(int userId, int noteId);
 

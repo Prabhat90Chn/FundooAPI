@@ -1,6 +1,6 @@
 ﻿namespace ModelLayer.Model
 {
-    public class NotesModel
+    public class NoteCreationModel
     {
         public string Title { get; set; }
         public string Description { get; set; }

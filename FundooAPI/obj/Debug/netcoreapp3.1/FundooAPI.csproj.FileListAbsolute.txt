@@ -20,6 +20,7 @@ D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFr
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
@@ -42,14 +43,18 @@ D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dl
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NLog.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Pipelines.Sockets.Unofficial.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\StackExchange.Redis.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
@@ -87,8 +92,3 @@ D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.xml
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.pdb
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.genruntimeconfig.cache
-D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Pipelines.Sockets.Unofficial.dll
-D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\StackExchange.Redis.dll
-D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
-D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.StackExchangeRedis.dll
-D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
