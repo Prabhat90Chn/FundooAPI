@@ -20,7 +20,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 namespace UserApi
 {
@@ -57,7 +56,7 @@ namespace UserApi
             services.AddScoped<INotesRL, NotesRL>();
             services.AddScoped<Password_Hash>();
             services.AddScoped<JwtToken>();
-            
+
             services.AddDbContext<FundooApiContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
         }
 
@@ -135,7 +134,7 @@ namespace UserApi
             {
                 loggingBuilder.ClearProviders();
                 loggingBuilder.SetMinimumLevel(LogLevel.Information);
-                loggingBuilder.AddNLog("NLog.config"); 
+                loggingBuilder.AddNLog("NLog.config");
             });
         }
 

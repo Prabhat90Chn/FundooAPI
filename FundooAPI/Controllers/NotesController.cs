@@ -2,10 +2,8 @@
 using BusinessLayer.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
-using RepositoryLayer.Entity;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -21,7 +19,7 @@ namespace UserApi.Controllers
         private INotesBL _notesBL;
         private readonly ILogger<NotesController> _logger;
 
-        public NotesController(INotesBL notesBL, ILogger<NotesController> logger, IDistributedCache cache)
+        public NotesController(INotesBL notesBL, ILogger<NotesController> logger)
         {
             _notesBL = notesBL;
             _logger = logger;
@@ -39,9 +37,9 @@ namespace UserApi.Controllers
             try
             {
                 int userId = GetUserIdFromClaims();
-                var note =await _notesBL.AddNote(notesModel, userId);
-                
-                var response = new ResponseModel<UserNote>();
+                var note = await _notesBL.AddNote(notesModel, userId);
+
+                var response = new ResponseModel<NoteModel>();
                 if (note != null)
                 {
                     response.Success = true;
@@ -49,13 +47,13 @@ namespace UserApi.Controllers
                     response.Data = note;
                     return Created(string.Empty, response);
                 }
-                    response.Success = false;
-                    response.Message = "Error creating note. Please try again";
-                    return BadRequest(response);
+                response.Success = false;
+                response.Message = "Error creating note. Please try again";
+                return BadRequest(response);
             }
             catch (BusinessLayerException ex)
             {
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _logger.LogError(ex.InnerException, ex.InnerException.Message);
                     return StatusCode(500, ex.InnerException.Message);
@@ -71,26 +69,26 @@ namespace UserApi.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public IActionResult ViewNotes()
+        public async Task<IActionResult> ViewNotes()
         {
             try
             {
-                var response = new ResponseModel<List<UserNote>>();
+                var response = new ResponseModel<List<NoteModel>>();
                 int userId = GetUserIdFromClaims();
-                var listOfNotes = _notesBL.ViewNotes(userId);
-                
+                var listOfNotes = await _notesBL.ViewNotes(userId);
+
                 if (listOfNotes != null)
                 {
                     response.Success = true;
                     response.Message = "Notes Retrieved successfully";
-                    response.Data = listOfNotes.Result;
+                    response.Data = listOfNotes;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = "No Notes found for the specific user";
-                    return NotFound(response);
+                response.Success = false;
+                response.Message = "No Notes found for the specific user";
+                return NotFound(response);
             }
-            catch(BusinessLayerException ex)
+            catch (BusinessLayerException ex)
             {
                 _logger.LogError(ex, ex.Message);
                 return StatusCode(500, ex.Message);
@@ -105,27 +103,27 @@ namespace UserApi.Controllers
         [Authorize]
         [HttpPost]
         [Route("id")]
-        public IActionResult ViewNoteByID(NotesIdModel noteIdModel)
+        public async Task<IActionResult> ViewNoteByID(NotesIdModel noteIdModel)
         {
             try
             {
-                var response = new ResponseModel<UserNote>();
+                var response = new ResponseModel<NoteModel>();
                 int userId = GetUserIdFromClaims();
-                var result = _notesBL.ViewNotebyId(userId, noteIdModel);
+                var result = await _notesBL.ViewNotebyId(userId, noteIdModel);
                 if (result != null)
                 {
                     response.Success = true;
-                    response.Message = "Notes retrieved Successfully";
+                    response.Message = "Note retrieved Successfully";
                     response.Data = result;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = $"Note does exist for id {noteIdModel.NoteId}";
-                    return NotFound(response);
+                response.Success = false;
+                response.Message = $"Note does exist for id {noteIdModel.NoteId}";
+                return NotFound(response);
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex,ex.Message);
+                _logger.LogError(ex, ex.Message);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -137,13 +135,13 @@ namespace UserApi.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPatch]
-        public IActionResult EditNote(EditNotesModel editNotesModel)
+        public async Task<IActionResult> EditNote(EditNotesModel editNotesModel)
         {
             try
             {
-                var response = new ResponseModel<UserNote>();
+                var response = new ResponseModel<NoteModel>();
                 int userId = GetUserIdFromClaims();
-                var result = _notesBL.EditNote(editNotesModel, userId);
+                var result = await _notesBL.EditNote(editNotesModel, userId);
                 if (result != null)
                 {
                     response.Success = true;
@@ -151,13 +149,13 @@ namespace UserApi.Controllers
                     response.Data = result;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = "Error while editing the note,Please try again";
-                    return NotFound(response);
+                response.Success = false;
+                response.Message = "Error while editing the note,Please try again";
+                return NotFound(response);
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex ,ex.Message);
+                _logger.LogError(ex, ex.Message);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -169,13 +167,13 @@ namespace UserApi.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpDelete]
-        public IActionResult DeleteNote(NotesIdModel noteIdModel)
+        public async Task<IActionResult> DeleteNote(NotesIdModel noteIdModel)
         {
             try
             {
                 var response = new ResponseModel<bool>();
                 int userId = GetUserIdFromClaims();
-                bool result = _notesBL.DeleteNote(userId, noteIdModel);
+                bool result = await _notesBL.DeleteNote(userId, noteIdModel);
                 if (result)
                 {
                     response.Success = true;
@@ -183,9 +181,9 @@ namespace UserApi.Controllers
                     response.Data = true;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = "There was a Error while deleting the node, Please try again";
-                    return NotFound(response);
+                response.Success = false;
+                response.Message = "There was a Error while deleting the node, Please try again";
+                return NotFound(response);
             }
             catch (BusinessLayerException ex)
             {
@@ -201,24 +199,24 @@ namespace UserApi.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPatch]
-        [Route("archiveing")]
-        public IActionResult ArchUnarchived(NotesIdModel noteIdModel)
+        [Route("archiving")]
+        public async Task<IActionResult> ArchUnarchived(NotesIdModel noteIdModel)
         {
             try
             {
                 var response = new ResponseModel<bool>();
                 int userId = GetUserIdFromClaims();
-                bool result = _notesBL.ArchUnarchived(userId, noteIdModel);
+                bool result = await _notesBL.ArchUnarchived(userId, noteIdModel);
                 if (result)
                 {
                     response.Success = true;
-                    response.Message = "Operation Performed Successfully";
+                    response.Message = "ArchUnarchived Performed Successfully";
                     response.Data = true;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = "Unable to find the note for given user, Please try again";
-                    return BadRequest(response);
+                response.Success = false;
+                response.Message = "Unable to find the note for given user, Please try again";
+                return BadRequest(response);
             }
             catch (BusinessLayerException ex)
             {
@@ -235,23 +233,23 @@ namespace UserApi.Controllers
         [Authorize]
         [HttpPatch]
         [Route("trashing")]
-        public IActionResult TrashUnTrash(NotesIdModel noteIdModel)
+        public async Task<IActionResult> TrashUnTrash(NotesIdModel noteIdModel)
         {
             try
             {
                 var response = new ResponseModel<bool>();
                 int userId = GetUserIdFromClaims();
-                bool result = _notesBL.TrashUnTrash(userId, noteIdModel);
+                bool result = await _notesBL.TrashUnTrash(userId, noteIdModel);
                 if (result)
                 {
                     response.Success = true;
-                    response.Message = "Operation Performed Successfully";
+                    response.Message = "TrashUnTrash Performed Successfully";
                     response.Data = true;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = "Unable to find the note for given user, Please try again ";
-                    return BadRequest(response);
+                response.Success = false;
+                response.Message = "Unable to find the note for given user, Please try again ";
+                return BadRequest(response);
             }
             catch (BusinessLayerException ex)
             {
@@ -262,8 +260,8 @@ namespace UserApi.Controllers
 
         private int GetUserIdFromClaims()
         {
-                string userId = User.FindFirstValue("UserId");
-                return Convert.ToInt32(userId);
+            string userId = User.FindFirstValue("UserId");
+            return Convert.ToInt32(userId);
         }
     }
 }

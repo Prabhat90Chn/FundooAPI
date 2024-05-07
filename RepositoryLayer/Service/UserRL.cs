@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -32,10 +31,10 @@ namespace RepositoryLayer.Service
             try
             {
                 var existingUser = _dbContext.User.FirstOrDefault<UserEntity>(e => e.Email == userRegistrationDto.Email);
-               
+
                 if (existingUser == null)
                 {
-                    var newUser= new UserEntity
+                    var newUser = new UserEntity
                     {
                         FirstName = userRegistrationDto.FirstName,
                         LastName = userRegistrationDto.LastName,
@@ -52,7 +51,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
-                throw new RepositoryLayerException(ex.Message,ex);
+                throw new RepositoryLayerException(ex.Message, ex);
             }
         }
 
@@ -62,7 +61,7 @@ namespace RepositoryLayer.Service
             try
             {
                 var validUser = _dbContext.User.FirstOrDefault(e => e.Email == userLoginDto.Email);
-                
+
                 if (validUser != null && _passwordHash.VerifyPassword(userLoginDto.Password, validUser.Password))
                 {
                     var token = new JwtToken.JwtToken(_config);
@@ -81,7 +80,7 @@ namespace RepositoryLayer.Service
             try
             {
                 var validUser = _dbContext.User.FirstOrDefault(e => e.Email == email);
-                
+
                 if (validUser != null)
                 {
                     var token = new JwtToken.JwtToken(_config);
@@ -95,7 +94,7 @@ namespace RepositoryLayer.Service
                     return "Ok";
                 }
                 return null;
-                
+
             }
             catch (Exception ex)
             {
@@ -109,8 +108,8 @@ namespace RepositoryLayer.Service
             try
             {
                 var validUser = _dbContext.User.FirstOrDefault(e => e.UserId == userId);
-                
-                if (validUser!= null)
+
+                if (validUser != null)
                 {
                     validUser.Password = _passwordHash.PasswordHashing(newPassword);
                     _dbContext.SaveChanges();

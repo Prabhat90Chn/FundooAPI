@@ -16,7 +16,7 @@ namespace ModelLayer.Model
         [RegularExpression(EmailRegexPattern, ErrorMessage = EmailInvalidErrorMessage)]
         public string Email { get; set; }
 
-       // [Required(ErrorMessage = PasswordRequiredErrorMessage)]
+        // [Required(ErrorMessage = PasswordRequiredErrorMessage)]
         [RegularExpression(PasswordRegexPattern, ErrorMessage = PasswordInvalidErrorMessage)]
         public string Password { get; set; }
     }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using RepositoryLayer.RLException;
+﻿using RepositoryLayer.RLException;
 using System;
 using System.Security.Cryptography;
 
@@ -11,12 +10,12 @@ namespace RepositoryLayer.Hashing
         private const int SaltSize = 16;
         private const int HashSize = 20;
         private const int Iterations = 10000;
-        
 
-        public Password_Hash() 
-        { 
+
+        public Password_Hash()
+        {
         }
-        public  string PasswordHashing(string userPass)
+        public string PasswordHashing(string userPass)
         {
             try
             {
@@ -32,12 +31,12 @@ namespace RepositoryLayer.Hashing
             }
             catch (Exception ex)
             {
-                throw new RepositoryLayerException(ex.Message,ex);
+                throw new RepositoryLayerException(ex.Message, ex);
             }
-            
+
         }
 
-        public  bool VerifyPassword(string userPass, string storedHashPass)
+        public bool VerifyPassword(string userPass, string storedHashPass)
         {
             try
             {
@@ -49,18 +48,18 @@ namespace RepositoryLayer.Hashing
                 bool result = ComparePassword(hash, hashByte);
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new RepositoryLayerException(ex.Message,ex);
+                throw new RepositoryLayerException(ex.Message, ex);
             }
-            
+
         }
 
         private bool ComparePassword(byte[] hash, byte[] hashByte)
         {
-            for(int i = 0;i<HashSize;i++)
+            for (int i = 0; i < HashSize; i++)
             {
-                if (hashByte[i+SaltSize]!= hash[i])
+                if (hashByte[i + SaltSize] != hash[i])
                 {
                     return false;
                 }

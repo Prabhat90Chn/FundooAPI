@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RepositoryLayer.Authentication
+﻿namespace RepositoryLayer.Authentication
 {
     public class AuthenticationClass
     {

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLayer.BLException
 {
-    public class BusinessLayerException:Exception
+    public class BusinessLayerException : Exception
     {
         public BusinessLayerException()
         {

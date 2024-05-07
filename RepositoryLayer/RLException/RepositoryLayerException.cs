@@ -11,7 +11,7 @@ namespace RepositoryLayer.RLException
         public RepositoryLayerException(string message) : base(message)
         {
         }
-        
+
         public RepositoryLayerException(string message, Exception innerException) : base(message, innerException)
         {
         }

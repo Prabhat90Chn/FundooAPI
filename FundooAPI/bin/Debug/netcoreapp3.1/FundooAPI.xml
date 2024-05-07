@@ -4,86 +4,86 @@
         <name>FundooAPI</name>
     </assembly>
     <members>
-        <member name="T:FundooAPI.Controllers.FundooApiController">
-            <summary>
-            This class is used as Login API Controller
-            </summary>
-        </member>
-        <member name="M:FundooAPI.Controllers.FundooApiController.Registration(ModelLayer.Model.RegistrationModel)">
-            <summary>
-            This API is used to Register User
-            </summary>
-            <param name="userModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FundooAPI.Controllers.FundooApiController.Login(ModelLayer.Model.LoginModel)">
-            <summary>
-            This API is used for User Login
-            </summary>
-            <param name="loginModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FundooAPI.Controllers.FundooApiController.ForgotPassword(ModelLayer.Model.ForgetPasswordModel)">
-            <summary>
-            This API is used to get Forget Password
-            </summary>
-            <param name="passwordModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FundooAPI.Controllers.FundooApiController.ResetPassword(System.String,ModelLayer.Model.ResetPasswordModel)">
-            <summary>
-            This API is used to Reset Password
-            </summary>
-            <param name="token"></param>
-            <param name="resetModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FundooAPI.Controllers.NotesController.CreateNote(ModelLayer.Model.NoteCreationModel)">
+        <member name="M:UserApi.Controllers.NotesController.CreateNote(ModelLayer.Model.NoteCreationModel)">
             <summary>
             This Api is used to create notes for the user
             </summary>
             <param name="notesModel"></param>
             <returns></returns>
         </member>
-        <member name="M:FundooAPI.Controllers.NotesController.ViewNotes">
+        <member name="M:UserApi.Controllers.NotesController.ViewNotes">
             <summary>
             This Api is used to fetch all the notes for the user 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FundooAPI.Controllers.NotesController.ViewNoteByID(ModelLayer.Model.NotesIdModel)">
+        <member name="M:UserApi.Controllers.NotesController.ViewNoteByID(ModelLayer.Model.NotesIdModel)">
             <summary>
             This Api is used to fetch note using note id
             </summary>
             <param name="noteIdmodel"></param>
             <returns></returns>
         </member>
-        <member name="M:FundooAPI.Controllers.NotesController.EditNote(ModelLayer.Model.EditNotesModel)">
+        <member name="M:UserApi.Controllers.NotesController.EditNote(ModelLayer.Model.EditNotesModel)">
             <summary>
             This Api is used to edit note
             </summary>
             <param name="editModel"></param>
             <returns></returns>
         </member>
-        <member name="M:FundooAPI.Controllers.NotesController.DeleteNote(ModelLayer.Model.NotesIdModel)">
+        <member name="M:UserApi.Controllers.NotesController.DeleteNote(ModelLayer.Model.NotesIdModel)">
             <summary>
             This Api is used to delete note for the given user id
             </summary>
             <param name="noteIdModel"></param>
             <returns></returns>
         </member>
-        <member name="M:FundooAPI.Controllers.NotesController.ArchUnarchived(ModelLayer.Model.NotesIdModel)">
+        <member name="M:UserApi.Controllers.NotesController.ArchUnarchived(ModelLayer.Model.NotesIdModel)">
             <summary>
             This Api is used to Archive and Unarchive the note
             </summary>
             <param name="noteIdModel"></param>
             <returns></returns>
         </member>
-        <member name="M:FundooAPI.Controllers.NotesController.TrashUnTrash(ModelLayer.Model.NotesIdModel)">
+        <member name="M:UserApi.Controllers.NotesController.TrashUnTrash(ModelLayer.Model.NotesIdModel)">
             <summary>
             This Api is used to move note to trash and vice-versa.
             </summary>
             <param name="noteIdModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UserApi.Controllers.UserController">
+            <summary>
+            This class is used as Login API Controller
+            </summary>
+        </member>
+        <member name="M:UserApi.Controllers.UserController.Registration(ModelLayer.Model.RegistrationModel)">
+            <summary>
+            This API is used to Register User
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UserApi.Controllers.UserController.Login(ModelLayer.Model.LoginModel)">
+            <summary>
+            This API is used for User Login
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UserApi.Controllers.UserController.ForgotPassword(ModelLayer.Model.ForgetPasswordModel)">
+            <summary>
+            This API is used to get Forget Password
+            </summary>
+            <param name="passwordModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UserApi.Controllers.UserController.ResetPassword(System.String,ModelLayer.Model.ResetPasswordModel)">
+            <summary>
+            This API is used to Reset Password
+            </summary>
+            <param name="token"></param>
+            <param name="resetModel"></param>
             <returns></returns>
         </member>
     </members>

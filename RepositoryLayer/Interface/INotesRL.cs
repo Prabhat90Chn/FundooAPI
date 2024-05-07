@@ -8,16 +8,16 @@ namespace RepositoryLayer.Interface
     public interface INotesRL
     {
         public Task<UserNote> AddNote(NoteCreationModel notesModel, int userId);
-        public List<UserNote> ViewNotes(int userId);
+        public Task<List<UserNote>> ViewNotes(int userId);
 
-        public UserNote ViewNotebyId(int userId, int noteId);
+        public Task<UserNote> ViewNotebyId(int userId, int noteId);
 
-        public UserNote EditNote(EditNotesModel editModel, int userId);
+        public Task<UserNote> EditNote(EditNotesModel editModel, int userId);
 
-        public bool DeleteNote(int userId, int noteId);
+        public Task<bool> DeleteNote(int userId, int noteId);
 
-        public bool ArchUnarchived(int userId, int noteId);
+        public Task<bool> ArchUnarchived(int userId, int noteId);
 
-        public bool TrashUnTrash(int userId, int noteId);
+        public Task<bool> TrashUnTrash(int userId, int noteId);
     }
 }

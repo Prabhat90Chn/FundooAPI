@@ -37,9 +37,10 @@ namespace RepositoryLayer.JwtToken
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 return tokenHandler.WriteToken(token);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                throw new RepositoryLayerException(ex.Message,ex);
+                throw new RepositoryLayerException(ex.Message, ex);
             }
         }
 
@@ -64,7 +65,8 @@ namespace RepositoryLayer.JwtToken
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 return tokenHandler.WriteToken(token);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new RepositoryLayerException(ex.Message, ex);
             }
@@ -90,7 +92,7 @@ namespace RepositoryLayer.JwtToken
             }
             catch (Exception ex)
             {
-                throw new RepositoryLayerException(ex.Message,ex);
+                throw new RepositoryLayerException(ex.Message, ex);
             }
         }
     }

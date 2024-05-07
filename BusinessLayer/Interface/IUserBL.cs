@@ -1,5 +1,4 @@
 ﻿using ModelLayer.Model;
-using RepositoryLayer.Entity;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Interface

@@ -3,7 +3,6 @@ using BusinessLayer.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
-using System;
 using System.Threading.Tasks;
 
 namespace UserApi.Controllers
@@ -37,14 +36,14 @@ namespace UserApi.Controllers
             {
                 var result = _userBL.RegisterUser(registrationModel);
                 var response = new ResponseModel<UserModel>();
-                
+
                 if (result != null)
                 {
                     response.Success = true;
                     response.Message = "User Registered successfully";
                     response.Data = result;
                     return Created(string.Empty, response);
-                }   
+                }
                 response.Success = false;
                 response.Message = "User is already present with same credentials";
                 return BadRequest(response);
@@ -77,13 +76,13 @@ namespace UserApi.Controllers
                     response.Data = user;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = "User Login failed, Please enter the valid credentials";
-                    return Unauthorized(response);
+                response.Success = false;
+                response.Message = "User Login failed, Please enter the valid credentials";
+                return Unauthorized(response);
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex.InnerException,ex.InnerException.Message);
+                _logger.LogError(ex.InnerException, ex.InnerException.Message);
                 return StatusCode(500, ex.InnerException.Message);
             }
         }
@@ -108,9 +107,9 @@ namespace UserApi.Controllers
                     response.Message = $"Reset password link sent successfully to your email address {result}";
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = $"User is not present with email id ={passwordModel.Email}";
-                    return BadRequest(response);
+                response.Success = false;
+                response.Message = $"User is not present with email id ={passwordModel.Email}";
+                return BadRequest(response);
             }
             catch (BusinessLayerException ex)
             {
@@ -139,9 +138,9 @@ namespace UserApi.Controllers
                     response.Data = result;
                     return Ok(response);
                 }
-                    response.Success = false;
-                    response.Message = "Error occurred resetting password. Please try again.";
-                    return BadRequest(response);
+                response.Success = false;
+                response.Message = "Error occurred resetting password. Please try again.";
+                return BadRequest(response);
             }
             catch (BusinessLayerException ex)
             {

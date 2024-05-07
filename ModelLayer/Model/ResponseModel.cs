@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ModelLayer.Model
+﻿namespace ModelLayer.Model
 {
     public class ResponseModel<T>
     {
