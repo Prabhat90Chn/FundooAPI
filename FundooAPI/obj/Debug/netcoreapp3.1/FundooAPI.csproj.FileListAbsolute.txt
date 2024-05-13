@@ -92,3 +92,5 @@ D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.dll
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.xml
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.pdb
 D:\EFCoreProjects\FundooAPI\FundooAPI\obj\Debug\netcoreapp3.1\FundooAPI.genruntimeconfig.cache
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\RabbitMQ.Client.dll
+D:\EFCoreProjects\FundooAPI\FundooAPI\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll

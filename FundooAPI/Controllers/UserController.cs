@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.BLException;
 using BusinessLayer.Interface;
+using FundooAPI.RabitMQ.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
+using System;
 using System.Threading.Tasks;
 
 namespace UserApi.Controllers
@@ -16,11 +18,13 @@ namespace UserApi.Controllers
     {
         private readonly IUserBL _userBL;
         private readonly ILogger<UserController> _logger;
+        private readonly IPublishSubscribeMQProducer _rabitMQProducer;
 
-        public UserController(IUserBL userBL, ILogger<UserController> logger)
+        public UserController(IUserBL userBL, ILogger<UserController> logger, IPublishSubscribeMQProducer rabitMQProducer)
         {
             _userBL = userBL;
             _logger = logger;
+            _rabitMQProducer = rabitMQProducer;
         }
 
 
@@ -39,6 +43,7 @@ namespace UserApi.Controllers
 
                 if (result != null)
                 {
+                    _rabitMQProducer.Publish(result);
                     response.Success = true;
                     response.Message = "User Registered successfully";
                     response.Data = result;
@@ -52,6 +57,11 @@ namespace UserApi.Controllers
             {
                 _logger.LogError(ex.InnerException, ex.InnerException.Message);
                 return StatusCode(500, ex.InnerException.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while publishing message to RabbitMQ");
+                return StatusCode(500, "Error occurred while publishing message to RabbitMQ");
             }
         }
 
@@ -71,6 +81,7 @@ namespace UserApi.Controllers
                 var response = new ResponseModel<string>();
                 if (user != null)
                 {
+                    _rabitMQProducer.Publish("User Login successful");
                     response.Success = true;
                     response.Message = "User Login successful";
                     response.Data = user;
@@ -84,6 +95,11 @@ namespace UserApi.Controllers
             {
                 _logger.LogError(ex.InnerException, ex.InnerException.Message);
                 return StatusCode(500, ex.InnerException.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while publishing message to RabbitMQ");
+                return StatusCode(500, "Error occurred while publishing message to RabbitMQ");
             }
         }
 
@@ -116,6 +132,11 @@ namespace UserApi.Controllers
                 _logger.LogError(ex.InnerException, ex.InnerException.Message);
                 return StatusCode(500, ex.InnerException.Message);
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while publishing message to RabbitMQ");
+                return StatusCode(500, "Error occurred while publishing message to RabbitMQ");
+            }
         }
 
         /// <summary>
@@ -133,6 +154,7 @@ namespace UserApi.Controllers
                 var response = new ResponseModel<bool>();
                 if (result)
                 {
+                    _rabitMQProducer.Publish("Password reset successful");
                     response.Success = true;
                     response.Message = "Password reset successful";
                     response.Data = result;
@@ -146,6 +168,11 @@ namespace UserApi.Controllers
             {
                 _logger.LogError(ex.InnerException, ex.InnerException.Message);
                 return StatusCode(500, ex.InnerException.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while publishing message to RabbitMQ");
+                return StatusCode(500, "Error occurred while publishing message to RabbitMQ");
             }
         }
     }

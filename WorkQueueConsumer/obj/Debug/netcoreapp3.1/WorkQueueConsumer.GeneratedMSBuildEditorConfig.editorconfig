@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = WorkQueueConsumer
+build_property.ProjectDir = D:\EFCoreProjects\FundooAPI\WorkQueueConsumer\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

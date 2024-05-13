@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.BLException;
 using BusinessLayer.Interface;
+using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
 using RepositoryLayer.Interface;
 using RepositoryLayer.JwtToken;
@@ -14,11 +15,13 @@ namespace BusinessLayer.Service
     {
         private IUserRL _userRl;
         private JwtToken _jwtToken;
+        private readonly ILogger<UserBL> _logger;
 
-        public UserBL(IUserRL userRl, JwtToken jwtToken)
+        public UserBL(IUserRL userRl, JwtToken jwtToken, ILogger<UserBL> logger)
         {
             _userRl = userRl;
             _jwtToken = jwtToken;
+            _logger = logger;
         }
 
         public UserModel RegisterUser(RegistrationModel userModel)
@@ -39,6 +42,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                _logger.LogError(ex, "Error occurred in RegisterUser method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -51,6 +55,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                _logger.LogError(ex, "Error occurred in LoginUser method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -63,6 +68,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                _logger.LogError(ex, "Error occurred in ForgetPassword method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -77,6 +83,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                _logger.LogError(ex, "Error occurred in ResetPassword method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }

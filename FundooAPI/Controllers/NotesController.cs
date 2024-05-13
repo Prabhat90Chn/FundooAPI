@@ -53,12 +53,8 @@ namespace UserApi.Controllers
             }
             catch (BusinessLayerException ex)
             {
-                if (ex.InnerException != null)
-                {
-                    _logger.LogError(ex.InnerException, ex.InnerException.Message);
-                    return StatusCode(500, ex.InnerException.Message);
-                }
-                _logger.LogError(ex, ex.Message);
+
+                LogException(ex, "Error occurred in CreateNote method.");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -90,7 +86,7 @@ namespace UserApi.Controllers
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex, ex.Message);
+                LogException(ex, "Error occurred in ViewNotes method.");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -123,7 +119,7 @@ namespace UserApi.Controllers
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex, ex.Message);
+                LogException(ex, "Error occurred in ViewNoteById method.");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -155,7 +151,7 @@ namespace UserApi.Controllers
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex, ex.Message);
+                LogException(ex, "Error occurred in EditNote method.");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -187,7 +183,7 @@ namespace UserApi.Controllers
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex, ex.Message);
+                LogException(ex, "Error occurred in DeleteNote method.");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -220,7 +216,7 @@ namespace UserApi.Controllers
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex, ex.Message);
+                LogException(ex, "Error occurred in ArchUnarchived method.");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -253,7 +249,7 @@ namespace UserApi.Controllers
             }
             catch (BusinessLayerException ex)
             {
-                _logger.LogError(ex, ex.Message);
+                LogException(ex, "Error occurred in TrashUnTrash method.");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -262,6 +258,14 @@ namespace UserApi.Controllers
         {
             string userId = User.FindFirstValue("UserId");
             return Convert.ToInt32(userId);
+        }
+
+        private void LogException(Exception ex, string message)
+        {
+            if (ex.InnerException != null)
+                _logger.LogError(ex.InnerException, message);
+            else
+                _logger.LogError(ex, message);
         }
     }
 }

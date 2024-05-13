@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -17,14 +18,16 @@ namespace RepositoryLayer.Service
         private readonly IConfiguration _config;
         private readonly Password_Hash _passwordHash;
         private readonly IEmailSender _emailService;
+        private readonly ILogger<UserRL> _logger;
 
 
-        public UserRL(FundooApiContext context, IConfiguration config, Password_Hash hash, IEmailSender emailService)
+        public UserRL(FundooApiContext context, IConfiguration config, Password_Hash hash, IEmailSender emailService, ILogger<UserRL> logger)
         {
             _dbContext = context;
             _config = config;
             _passwordHash = hash;
             _emailService = emailService;
+            _logger = logger;
         }
         public UserEntity RegisterUser(RegistrationModel userRegistrationDto)
         {
@@ -51,6 +54,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred in RegisterUser method.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -71,6 +75,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred in LoginUser method.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -98,6 +103,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred in ForgetPassword method.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -119,6 +125,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred in ResetPassword method.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }

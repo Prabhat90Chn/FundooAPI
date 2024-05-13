@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -14,10 +15,12 @@ namespace RepositoryLayer.Service
     public class NotesRL : INotesRL
     {
         private readonly FundooApiContext _dbContext;
+        private readonly ILogger<NotesRL> _logger;
 
-        public NotesRL(FundooApiContext context)
+        public NotesRL(FundooApiContext context, ILogger<NotesRL> logger)
         {
             _dbContext = context;
+            _logger = logger;
         }
 
         public async Task<UserNote> AddNote(NoteCreationModel notesModel, int userId)
@@ -35,12 +38,9 @@ namespace RepositoryLayer.Service
                 await _dbContext.SaveChangesAsync();
                 return dbnote.Entity;
             }
-            catch (DbUpdateException ex)
-            {
-                throw new RepositoryLayerException(ex.Message, ex);
-            }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred while adding note.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -54,6 +54,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred while retrieving notes.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -67,6 +68,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred while retrieving note by ID.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -89,6 +91,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred while editing note.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -108,6 +111,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred while deleting note.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -127,6 +131,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred while archiving/unarchiving note.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }
@@ -146,6 +151,7 @@ namespace RepositoryLayer.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred while trashing/untrashing note.");
                 throw new RepositoryLayerException(ex.Message, ex);
             }
         }

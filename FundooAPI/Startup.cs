@@ -1,5 +1,7 @@
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
+using FundooAPI.RabitMQ.Interface;
+using FundooAPI.RabitMQ.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,6 +58,7 @@ namespace UserApi
             services.AddScoped<INotesRL, NotesRL>();
             services.AddScoped<Password_Hash>();
             services.AddScoped<JwtToken>();
+            services.AddScoped<IPublishSubscribeMQProducer, PublishSubscribeMQProducer>();
 
             services.AddDbContext<FundooApiContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
         }

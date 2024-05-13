@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.BLException;
 using BusinessLayer.Interface;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
@@ -17,13 +18,15 @@ namespace BusinessLayer.Service
     {
         private readonly INotesRL _notesRL;
         private readonly IDistributedCache _cache;
+        private readonly ILogger<NotesBL> _logger;
         private List<NoteModel> noteList;
         private NoteModel noteModel = null;
 
-        public NotesBL(INotesRL notesRL, IDistributedCache cache)
+        public NotesBL(INotesRL notesRL, IDistributedCache cache, ILogger<NotesBL> logger)
         {
             _notesRL = notesRL;
             _cache = cache;
+            _logger = logger;
         }
 
         public async Task<NoteModel> AddNote(NoteCreationModel notesModel, int userId)
@@ -40,6 +43,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                LogException(ex, "Error occurred in AddNote method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -69,6 +73,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                LogException(ex, "Error occurred in ViewNotes method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -97,6 +102,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                LogException(ex, "Error occurred in ViewNotebyId method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -129,6 +135,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                LogException(ex, "Error occurred in EditNote method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -158,6 +165,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                LogException(ex, "Error occurred in DeleteNote method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -171,6 +179,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                LogException(ex, "Error occurred in ArchUnarchived method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -184,6 +193,7 @@ namespace BusinessLayer.Service
             }
             catch (RepositoryLayerException ex)
             {
+                LogException(ex, "Error occurred in TrashUnTrash method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -219,6 +229,7 @@ namespace BusinessLayer.Service
             }
             catch (Exception ex)
             {
+                LogException(ex, "Error occurred in CacheUserNoteAsync method.");
                 throw new BusinessLayerException(ex.Message, ex);
             }
         }
@@ -253,6 +264,11 @@ namespace BusinessLayer.Service
         private List<NoteModel> ConvertToNoteModels(List<UserNote> listOfNotes)
         {
             return listOfNotes.Select(ConvertToNoteModel).ToList();
+        }
+
+        private void LogException(Exception ex, string message)
+        {
+            _logger.LogError(ex, message);
         }
     }
 }
