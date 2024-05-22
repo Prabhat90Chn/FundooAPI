@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m65Oh1LDEzFVUS8z7K2Po5QVTJO7XKmY4a0BvK1TskuvQP3RthCyaP6aeDWtiEauAKOocAtkl1zmjKj1qdu3bA==",
+  "dgSpecHash": "76+rXSO6CKFSh9j2sR4HoPXYpt0VAxiItJuKvOuiIk6CFkEEQsrgpb8A7yCWr+AiOx7uGMYBjz4n9jKwzSVUHQ==",
   "success": true,
-  "projectFilePath": "D:\\EFCoreProjects\\FundooAPI\\RabitMQConsumer\\DirectConsumer.csproj",
+  "projectFilePath": "D:\\EFCoreProjects\\FundooAPI\\RabitMQConsumer\\RabbitMQConsumer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\rabbitmq.client\\6.8.1\\rabbitmq.client.6.8.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",

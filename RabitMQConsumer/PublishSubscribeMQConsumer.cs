@@ -1,16 +1,17 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.Data.Common;
 using System;
 using System.Text;
-using System.Threading.Channels;
+using System.Threading;
 
-namespace DirectConsumer
+namespace RabbitMQConsumer
 {
     public class PublishSubscribeMQConsumer
     {
-        static private IModel channel;
-        static private IConnection connection;
+        private static IModel channel;
+        private static IConnection connection;
+        private static ManualResetEvent manualResetEvent = new ManualResetEvent(false);
+
         static void Main(string[] args)
         {
             try
@@ -27,47 +28,61 @@ namespace DirectConsumer
                 channel = connection.CreateModel();
 
                 channel.QueueDeclare
-                   (
+                (
                     queue: "direct_queue",
                     durable: true,
                     exclusive: false,
                     autoDelete: false,
                     arguments: null
-                    );
+                );
 
                 var consumer = new EventingBasicConsumer(channel);
 
-                /*consumer.Received += (model, eventArgs) =>
-                {
-                    var body = eventArgs.Body.ToArray();
-                    var message = Encoding.UTF8.GetString(body);
+                
+                channel.BasicConsume
+                (
+                    queue: "direct_queue",
+                    autoAck: true,
+                    consumer: consumer
+                );
 
-                };*/
-
+              
                 consumer.Received += HandleMessage;
 
                 void HandleMessage(object model, BasicDeliverEventArgs eventArgs)
                 {
                     var body = eventArgs.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
+                    Console.WriteLine("*****Rabbit MQ message****");
+                    Console.WriteLine();
+                    Console.WriteLine(message);
                 }
-
-                channel.BasicConsume
-                   (
-                   queue: "direct_queue",
-                   autoAck: true,
-                   consumer: consumer
-                   );
-
-            }catch (Exception ex)
+                manualResetEvent.WaitOne();
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                StopConsuming();
             }
         }
-        public void StopConsuming()
+
+        public static void StopConsuming()
         {
-            channel.Close();
-            connection.Close();
+            if (channel != null)
+            {
+                channel.Close();
+                channel.Dispose();
+            }
+
+            if (connection != null)
+            {
+                connection.Close();
+                connection.Dispose();
+            }
+
             Console.WriteLine("Consumer stopped.");
         }
     }

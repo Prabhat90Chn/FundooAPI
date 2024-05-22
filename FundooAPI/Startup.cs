@@ -1,5 +1,6 @@
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
+using Confluent.Kafka;
 using FundooAPI.RabitMQ.Interface;
 using FundooAPI.RabitMQ.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -47,6 +48,7 @@ namespace UserApi
             AddNlogConfiguration(services);
 
             AddRedisConfiguration(services);
+            AddKafksConfiguration(services);
         }
 
         private void ConfigureDependencyInjection(IServiceCollection services)
@@ -149,6 +151,14 @@ namespace UserApi
                 options.Configuration = redisConnectionString;
             });
         }
+
+        private void AddKafksConfiguration(IServiceCollection services)
+        {
+            var producerConfig = new ProducerConfig();
+            Configuration.Bind("producer",producerConfig);
+            services.AddSingleton<ProducerConfig>(producerConfig);
+        }
+
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

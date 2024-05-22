@@ -24,7 +24,6 @@ namespace UserApi.Controllers
             _notesBL = notesBL;
             _logger = logger;
         }
-
         /// <summary>
         /// This Api is used to create notes for the user
         /// </summary>

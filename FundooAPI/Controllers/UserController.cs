@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.BLException;
 using BusinessLayer.Interface;
+using Confluent.Kafka;
 using FundooAPI.RabitMQ.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ModelLayer.Model;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -19,12 +21,14 @@ namespace UserApi.Controllers
         private readonly IUserBL _userBL;
         private readonly ILogger<UserController> _logger;
         private readonly IPublishSubscribeMQProducer _rabitMQProducer;
+        private readonly ProducerConfig _producerConfig;
 
-        public UserController(IUserBL userBL, ILogger<UserController> logger, IPublishSubscribeMQProducer rabitMQProducer)
+        public UserController(IUserBL userBL, ILogger<UserController> logger, IPublishSubscribeMQProducer rabitMQProducer, ProducerConfig producerConfig)
         {
             _userBL = userBL;
             _logger = logger;
             _rabitMQProducer = rabitMQProducer;
+            _producerConfig = producerConfig;
         }
 
 
@@ -44,6 +48,7 @@ namespace UserApi.Controllers
                 if (result != null)
                 {
                     _rabitMQProducer.Publish(result);
+                    sendDataToKafka(result);
                     response.Success = true;
                     response.Message = "User Registered successfully";
                     response.Data = result;
@@ -64,6 +69,8 @@ namespace UserApi.Controllers
                 return StatusCode(500, "Error occurred while publishing message to RabbitMQ");
             }
         }
+
+        
 
 
 
@@ -173,6 +180,19 @@ namespace UserApi.Controllers
             {
                 _logger.LogError(ex, "Error occurred while publishing message to RabbitMQ");
                 return StatusCode(500, "Error occurred while publishing message to RabbitMQ");
+            }
+        }
+        private async void sendDataToKafka(UserModel result)
+        {
+            string serializedResult = JsonConvert.SerializeObject(result);
+            using(var producer= new ProducerBuilder<Null,string>(_producerConfig).Build())
+            {
+                await producer.ProduceAsync("quickstart-events", new Message<Null, string> 
+                {
+                    Value= serializedResult
+                });
+                producer.Flush(TimeSpan.FromSeconds(10));
+                
             }
         }
     }

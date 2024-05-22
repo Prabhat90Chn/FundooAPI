@@ -129,9 +129,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\EFCoreProjects\\FundooAPI\\RabitMQConsumer\\DirectConsumer.csproj",
-      "projectName": "DirectConsumer",
-      "projectPath": "D:\\EFCoreProjects\\FundooAPI\\RabitMQConsumer\\DirectConsumer.csproj",
+      "projectUniqueName": "D:\\EFCoreProjects\\FundooAPI\\RabitMQConsumer\\RabbitMQConsumer.csproj",
+      "projectName": "RabbitMQConsumer",
+      "projectPath": "D:\\EFCoreProjects\\FundooAPI\\RabitMQConsumer\\RabbitMQConsumer.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
       "outputPath": "D:\\EFCoreProjects\\FundooAPI\\RabitMQConsumer\\obj\\",
       "projectStyle": "PackageReference",

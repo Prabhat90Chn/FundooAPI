@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "btbxfpNOTetbghRqyj+CBa9vMNfgVHR6LSedkKFcEJlu10ksCWv3RzyKpHpZ2BStUbzR+SExK2k6zf7uHwzt9Q==",
+  "dgSpecHash": "BJpHM/6jqHZfXIHMxwfkGP7qrXCVmd4zEwm2wJp8JMyN5/hlUoLVS1ZjGchEwtHe0jkwGmuaVl/dmfwveVpmCw==",
   "success": true,
   "projectFilePath": "D:\\EFCoreProjects\\FundooAPI\\FundooAPI\\FundooAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\confluent.kafka\\2.4.0\\confluent.kafka.2.4.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\librdkafka.redist\\2.4.0\\librdkafka.redist.2.4.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\mailkit\\3.2.0\\mailkit.3.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.32\\microsoft.aspnetcore.authentication.jwtbearer.3.1.32.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
